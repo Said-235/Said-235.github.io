@@ -8,7 +8,7 @@ export const profile = {
   avatar: 'https://github.com/Said-235.png',
   headline: 'Construyo sistemas internos y productos web que resuelven operaciones reales.',
   blurb:
-    'Estudiante de sistemas computacionales. Colaboro con Labotec por llamadas, desarrollando e integrando herramientas con React, Supabase y automatización.',
+    'Estudiante de sistemas computacionales. Colaboro con Labotec bajo demanda: me contactan, agendamos y voy a sitio. Ahí desarrollo e integro herramientas con React, Supabase y automatización.',
 }
 
 export const nav = [
@@ -22,12 +22,12 @@ export const nav = [
 
 export const about = {
   paragraphs: [
-    'Soy Said Hernandez, también conocido como Kitzune. Estudio sistemas computacionales en la ESCOM (IPN), cursé Profesión: Desarrollador Full Stack Python en EBAC y desde hace diez meses colaboro con Labotec por llamadas: no es un puesto de tiempo completo. Cuando me contactan, integro procesos de operación en software que el equipo usa en el día a día.',
+    'Soy Said Hernandez, también conocido como Kitzune. Estudio sistemas computacionales en la ESCOM (IPN), cursé Profesión: Desarrollador Full Stack Python en EBAC y desde hace diez meses colaboro con Labotec: no es un puesto de tiempo completo. Me contactan, agendamos una visita y voy a sitio; ahí integro procesos de operación en software que el equipo usa en el día a día.',
     'He desarrollado órdenes de servicio, órdenes de compra e inventario, además de una landing con agenda de citas conectada a APIs de Google: reseñas en el sitio y eventos automáticos en el calendario del prestador de servicios.',
     'Mi flujo de trabajo incluye Cursor y Claude: los uso para iterar más rápido, revisar código y llevar prototipos a producción sin perder el criterio de arquitectura, seguridad y detalle de producto.',
   ],
   highlights: [
-    { label: 'Labotec', value: '10 meses colaborando por llamadas (no es puesto fijo)' },
+    { label: 'Labotec', value: '10 meses: visitas a sitio cuando se agenda (no es puesto fijo)' },
     { label: 'ESCOM', value: 'Sistemas computacionales' },
     { label: 'EBAC', value: 'Profesión: Desarrollador Full Stack Python', url: 'https://ebac.mx/prof-full-stack-python' },
     { label: 'Aleph RI', value: '4 meses en semillero' },
@@ -95,11 +95,11 @@ export const skillGroups = [
 
 export const experience = [
   {
-    title: 'Integración de sistemas (por llamadas)',
+    title: 'Integración de sistemas (visitas a sitio)',
     org: 'Labotec',
     period: '10 meses · colaboración, no tiempo completo',
     detail:
-      'Apoyo bajo demanda: desarrollo e integración de sistemas internos (órdenes de servicio y de compra). Interfaz, datos y despliegue cuando el proyecto lo requiere.',
+      'Me contactan y voy a sitio cuando hay una visita agendada. En esas sesiones desarrollo e integro sistemas internos (órdenes de servicio y de compra): interfaz, datos y despliegue según lo que pida el proyecto.',
   },
   {
     title: 'Semillero de desarrollo',

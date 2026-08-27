@@ -35,7 +35,7 @@ Si dejas **Deploy from a branch**, GitHub sirve el código fuente (`package.json
 
 El dominio raíz ya está en **AWS Amplify**: en Namecheap se ve como ALIAS `@` y CNAME `www` hacia `*.cloudfront.net`. Ese sitio no se mueve.
 
-Un subdominio **no se compra aparte**. Es un registro DNS nuevo. El de este sitio es `portafolio.invenflow.xyz` (Host `portafolio` en Namecheap).
+Un subdominio **no se compra aparte**. Es un registro DNS nuevo. El de este sitio es `github.invenflow.xyz` (Host `github` en Namecheap).
 
 ### 1. Crear el subdominio en Namecheap
 
@@ -48,7 +48,7 @@ En la misma pantalla de **Advanced DNS** (Host Records):
 | Campo | Qué poner | Ejemplo |
 |-------|-----------|---------|
 | Type | CNAME Record | CNAME Record |
-| Host | solo el subdominio, **sin** el dominio | `portafolio` |
+| Host | solo el subdominio, **sin** el dominio | `github` |
 | Value | destino de GitHub Pages, con punto final | `said-235.github.io.` |
 | TTL | Automatic | Automatic |
 
@@ -67,7 +67,7 @@ Si en Host pones `www` o `@`, vas a romper el sitio de Amplify.
 Tras guardar, el subdominio queda creado. La DNS puede tardar unos minutos (a veces hasta 30–60). Comprueba:
 
 ```bash
-dig portafolio.invenflow.xyz +short
+dig github.invenflow.xyz +short
 ```
 
 Debe salir `said-235.github.io` y luego IPs de GitHub. El dominio principal no debe cambiar:
@@ -84,7 +84,7 @@ Esos dos deben seguir resolviendo a CloudFront.
 Cuando el `dig` del subdominio ya apunte a GitHub:
 
 1. En el repo: **Settings → Pages → Custom domain**.
-2. Escribe el FQDN, no solo el host: `portafolio.invenflow.xyz` (con **n**: *invenflow*, no *ivenflow*).
+2. Escribe el FQDN, no solo el host: `github.invenflow.xyz` (con **n**: *invenflow*, no *ivenflow*).
 3. Guarda. GitHub verifica el CNAME y emite HTTPS (puede tardar).
 4. Cuando aparezca, activa **Enforce HTTPS**.
 
@@ -93,7 +93,7 @@ Cuando el `dig` del subdominio ya apunte a GitHub:
 Crea `public/CNAME` con **una sola línea** (sin `https://`), para que Vite lo copie a `dist` en cada build:
 
 ```
-portafolio.invenflow.xyz
+github.invenflow.xyz
 ```
 
 Ese archivo ya está en `public/CNAME`. Tras un push, Vite lo copia a `dist` en cada build.

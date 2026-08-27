@@ -24,15 +24,18 @@ Hasta que exista la clave, el formulario avisa y deja el `mailto` como alternati
 ## Publicar en GitHub Pages
 
 1. Haz push a `main`.
-2. En el repo: **Settings → Pages → Source → GitHub Actions**.
-3. El workflow `.github/workflows/deploy.yml` construye `dist` y lo publica.
-4. Espera el check verde. La URL de GitHub será `https://said-235.github.io/`. El sitio público será un **subdominio** (abajo).
+2. En **Settings → Pages**, en **Build and deployment**, el recuadro que ahora dice **Deploy from a branch** es **Source**. Ábrelo y elige **GitHub Actions** (no hace falta un menú aparte con ese nombre).
+3. No cambies Branch `main` / `/(root)`: al pasar a Actions esas opciones de rama desaparecen. El workflow `.github/workflows/deploy.yml` construye `dist` y lo publica.
+4. Arriba a la izquierda, **Actions** (entre Tags y Webhooks) muestra el workflow. Espera el check verde.
+5. La URL de GitHub será `https://said-235.github.io/`. El sitio público será un **subdominio** (abajo).
+
+Si dejas **Deploy from a branch**, GitHub sirve el código fuente (`package.json`, `src/`) y el portafolio no se ve bien. Tiene que ser **GitHub Actions**.
 
 ## Subdominio (el dominio principal está en Amplify)
 
 El dominio raíz ya está en **AWS Amplify**: en Namecheap se ve como ALIAS `@` y CNAME `www` hacia `*.cloudfront.net`. Ese sitio no se mueve.
 
-Un subdominio **no se compra aparte**. Es un registro DNS nuevo. Hasta que lo crees, `portfolio.tudominio.com` no existe. Elige un host (`portfolio`, `said`, `kitzune`…) y síguelo igual en Namecheap, GitHub y `public/CNAME`.
+Un subdominio **no se compra aparte**. Es un registro DNS nuevo. El de este sitio es `portafolio.invenflow.xyz` (Host `portafolio` en Namecheap).
 
 ### 1. Crear el subdominio en Namecheap
 
@@ -45,7 +48,7 @@ En la misma pantalla de **Advanced DNS** (Host Records):
 | Campo | Qué poner | Ejemplo |
 |-------|-----------|---------|
 | Type | CNAME Record | CNAME Record |
-| Host | solo el subdominio, **sin** el dominio | `portfolio` |
+| Host | solo el subdominio, **sin** el dominio | `portafolio` |
 | Value | destino de GitHub Pages, con punto final | `said-235.github.io.` |
 | TTL | Automatic | Automatic |
 
@@ -64,14 +67,14 @@ Si en Host pones `www` o `@`, vas a romper el sitio de Amplify.
 Tras guardar, el subdominio queda creado. La DNS puede tardar unos minutos (a veces hasta 30–60). Comprueba:
 
 ```bash
-dig portfolio.tudominio.com +short
+dig portafolio.invenflow.xyz +short
 ```
 
 Debe salir `said-235.github.io` y luego IPs de GitHub. El dominio principal no debe cambiar:
 
 ```bash
-dig tudominio.com +short
-dig www.tudominio.com +short
+dig invenflow.xyz +short
+dig www.invenflow.xyz +short
 ```
 
 Esos dos deben seguir resolviendo a CloudFront.
@@ -81,7 +84,7 @@ Esos dos deben seguir resolviendo a CloudFront.
 Cuando el `dig` del subdominio ya apunte a GitHub:
 
 1. En el repo: **Settings → Pages → Custom domain**.
-2. Escribe el FQDN, no solo el host: `portfolio.tudominio.com`.
+2. Escribe el FQDN, no solo el host: `portafolio.invenflow.xyz` (con **n**: *invenflow*, no *ivenflow*).
 3. Guarda. GitHub verifica el CNAME y emite HTTPS (puede tardar).
 4. Cuando aparezca, activa **Enforce HTTPS**.
 
@@ -90,7 +93,7 @@ Cuando el `dig` del subdominio ya apunte a GitHub:
 Crea `public/CNAME` con **una sola línea** (sin `https://`), para que Vite lo copie a `dist` en cada build:
 
 ```
-portfolio.tudominio.com
+portafolio.invenflow.xyz
 ```
 
-Sustituye `portfolio` y `tudominio.com` por los valores reales. Si me los pasas, dejo el archivo creado.
+Ese archivo ya está en `public/CNAME`. Tras un push, Vite lo copia a `dist` en cada build.
